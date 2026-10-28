@@ -23,10 +23,10 @@
 
 /* NUMBERS */
 
-[0-9]+(\.[0-9]+)? 	{
+(\d+\.\d*|\d*\.\d+|\d+)([eE][+\-]?\d+)? 	{
 		yylval.number = atof(yytext);
 		return NUMBER;
-	}
+}
 
 /* Symbols in table */
 
@@ -35,6 +35,17 @@
 "*"		{ return TIMES; }
 "/"		{ return DIV; }
 
+"^"		{ return POWER; }
+"log"	{	return LOG; }
+"ln"	{ return LN; }
+
+"sin"	{	return SIN; }
+"cos"	{	return COS;	}
+"tan"	{	return TAN;	}
+
+"arcsin"	{ return ARCSIN;	}
+"arccos"	{	return ARCCOS;	}
+"arctan"	{	return ARCTAN;	}
 
 
 %%
