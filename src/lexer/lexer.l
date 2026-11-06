@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string.h>
 
+#include "../table/init.hpp"
+
 %}
 
 %x ERROR
@@ -28,24 +30,6 @@
 		return NUMBER;
 }
 
-/* Symbols in table */
-
-"-"		{ return MINUS; }
-"+"		{ return PLUS; }
-"*"		{ return TIMES; }
-"/"		{ return DIV; }
-
-"^"		{ return POWER; }
-"log"	{	return LOG; }
-"ln"	{ return LN; }
-
-"sin"	{	return SIN; }
-"cos"	{	return COS;	}
-"tan"	{	return TAN;	}
-
-"arcsin"	{ return ARCSIN;	}
-"arccos"	{	return ARCCOS;	}
-"arctan"	{	return ARCTAN;	}
 
 
 %%

@@ -1,10 +1,10 @@
 -- TODO --
 
     LEXER
-    -   Definir símbolos en tabla  [SIMBOLOS] = +,-,*,/,^,(,),!,%,{,}
-    -   Definir variables
-    -   Definir utilidades especiales (\smth)
-    
+    [x] Añadir símbolos en tabla  [SIMBOLOS] = +,-,*,/,^,(,),!,%,{,}
+    [x] Añadir funciones predefinidas
+    [_] Definir variables
+    [_] Definir utilidades especiales (\smth)
 
     PARSER
     -   Definir:
