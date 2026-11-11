@@ -1,5 +1,5 @@
 #include "init.hpp"
 
-void init(){
-	
+void initKeywords(SymbolTable &t){
+	for(ìnt i = 0; )
 }
