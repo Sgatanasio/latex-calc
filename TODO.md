@@ -1,5 +1,11 @@
 -- TODO --
-
+    
+    TABLA
+    
+    [x] Clase Symbol
+    [x] Clase Variable
+    [x] Clase Table
+    
     LEXER
     [x] Añadir símbolos en tabla  [SIMBOLOS] = +,-,*,/,^,(,),!,%,{,}
     [x] Añadir funciones predefinidas

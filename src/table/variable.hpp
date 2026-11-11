@@ -14,8 +14,8 @@ class Variable {
 		}
 		
 		inline Variable(const Variable & v){
-			this->setName(s.getName());
-			this->setToken(s.getToken());
+			this->setName(v.getName());
+			this->setToken(v.getToken());
 		}
 
 		inline const std::string & getName() const { return this->_name; }
