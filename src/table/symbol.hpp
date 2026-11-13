@@ -14,10 +14,11 @@ class Symbol {
 			_token = token;
 		}
 		
-		inline Symbol(const Symbol & s){
-			this->setName(s.getName());
-			this->setToken(s.getToken());
-		}
+		Symbol(const Symbol & s) = default;
+		Symbol(Symbol && s) = default;
+		Symbol & operator=(const Symbol & s) = default;
+		Symbol & operator=(Symbol && s) = default;
+		virtual ~Symbol() = default;
 
 		inline const std::string & getName() const { return this->_name; }
 		inline void setName(const std::string & name) { this->_name = name;}

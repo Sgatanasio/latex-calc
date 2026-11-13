@@ -1,29 +1,20 @@
 #ifndef VARIABLE_HPP_
 #define VARIABLE_HPP_
 
-#include<string>
+#include <string>
+#include <utility>
 
-class Variable {
-	private:
-		std::string _name;
-		int _token;
+#include "symbol.hpp"
+
+class Variable : public Symbol {
 	public:
-		inline Variable(std::string name = "", int token = 0){
-			_name = name; 
-			_token = token;
-		}
-		
-		inline Variable(const Variable & v){
-			this->setName(v.getName());
-			this->setToken(v.getToken());
-		}
+		inline Variable(std::string name = "", int token = 0) : Symbol(name, token) {}
 
-		inline const std::string & getName() const { return this->_name; }
-		inline void setName(const std::string & name) { this->_name = name; }
+		// Conversion from a Symbol: copies its state, the source stays valid.
+		inline Variable(const Symbol & s) : Symbol(s) {}
 
-		inline int getToken() const { return this->_token; }
-		inline void setToken(const int & token) { this->_token = token; }
-
+		// Move conversion: takes over the state, the source is left valid.
+		inline Variable(Symbol && s) : Symbol(std::move(s)) {}
 
 		bool operator==(const Variable & v) const;
 		bool operator <(const Variable & v) const;
