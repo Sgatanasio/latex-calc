@@ -1,6 +1,10 @@
-// PREDEFINICIONES DE SÍMBOLOS
+#ifndef INIT_HPP_
+#define INIT_HPP_
 
 #include <string>
+
+#include "parser.tab.h"
+#include "table.hpp"
 
 struct SymbolEntry {
 	std::string name;
@@ -16,61 +20,56 @@ static SymbolEntry operators[] = {
 	{"^", POWER},
 	{"%", PERCENT},
 	{"!", FACTORIAL},
-	{"mod", MOD},
+	{"\\mod", MOD},
 };
 
 // Funciones matemáticas
 static SymbolEntry functions[] = {
-	// Raíces y exponenciales
-	{"sqrt", SQRT},
-	{"cbrt", CBRT},
-	{"exp", EXP},
+	// Notación LaTeX (comandos con backslash)
+	{"\\sqrt", SQRT},
+	{"\\cbrt", CBRT},
+	{"\\exp", EXP},
 
-	// Logaritmos
-	{"log", LOG},
-	{"log10", LOG10},
-	{"log2", LOG2},
-	{"ln", LN},
+	{"\\log", LOG},
+	{"\\log10", LOG10},
+	{"\\log2", LOG2},
+	{"\\ln", LN},
 
-	// Trigonometría
-	{"sin", SIN},
-	{"cos", COS},
-	{"tan", TAN},
-	{"arcsin", ARCSIN},
-	{"asin", ARCSIN},
-	{"arccos", ARCCOS},
-	{"acos", ARCCOS},
-	{"arctan", ARCTAN},
-	{"atan", ARCTAN},
+	{"\\sin", SIN},
+	{"\\cos", COS},
+	{"\\tan", TAN},
+	{"\\arcsin", ARCSIN},
+	{"\\asin", ARCSIN},
+	{"\\arccos", ARCCOS},
+	{"\\acos", ARCCOS},
+	{"\\arctan", ARCTAN},
+	{"\\atan", ARCTAN},
 
-	// Trigonometría hiperbólica
-	{"sinh", SINH},
-	{"cosh", COSH},
-	{"tanh", TANH},
-	{"arcsinh", ARCSINH},
-	{"asinh", ARCSINH},
-	{"arccosh", ARCCOSH},
-	{"acosh", ARCCOSH},
-	{"arctanh", ARCTANH},
-	{"atanh", ARCTANH},
+	{"\\sinh", SINH},
+	{"\\cosh", COSH},
+	{"\\tanh", TANH},
+	{"\\arcsinh", ARCSINH},
+	{"\\asinh", ARCSINH},
+	{"\\arccosh", ARCCOSH},
+	{"\\acosh", ARCCOSH},
+	{"\\arctanh", ARCTANH},
+	{"\\atanh", ARCTANH},
 
-	// Otras funciones
-	{"abs", ABS},
-	{"floor", FLOOR},
-	{"ceil", CEIL},
-	{"round", ROUND},
-	{"gcd", GCD},
-	{"lcm", LCM},
-	{"ncr", NCR},
-	{"npr", NPR},
+	{"\\abs", ABS},
+	{"\\floor", FLOOR},
+	{"\\ceil", CEIL},
+	{"\\round", ROUND},
+	{"\\gcd", GCD},
+	{"\\lcm", LCM},
+	{"\\ncr", NCR},
+	{"\\npr", NPR},
 };
 
 // Constantes
 static SymbolEntry constants[] = {
-	{"pi", PI},
-	{"π", PI},
-	{"e", E},
-	{"ans", ANS},
+	{"\\pi", PI},
+	{"\\e", E},
+	{"\\ans", ANS},
 
 	// Unidades de ángulo
 	{"deg", DEG},
@@ -90,3 +89,8 @@ static SymbolEntry symbols[] = {
 	{";", STMT_END},
 	{"=", EQUAL},
 };
+
+
+void init(SymbolTable &t);
+
+#endif

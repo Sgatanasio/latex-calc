@@ -1,11 +1,15 @@
-%option noyywrap
+%option noyywrap nounput noinput
 
 %{
 
 #include <iostream>
 #include <string.h>
+#include <cstdlib>
 
-#include "../table/init.hpp"
+#include "parser.tab.h"
+#include "table/init.hpp"
+
+int lineNum = 1;
 
 %}
 
@@ -13,23 +17,20 @@
 
 %%
 
-
-/* One line comments */
+	/* One line comments */
 
 %.*$	{ ; }
 
 [ \t] { ; }
 \n		{ lineNum++; }
 
-;			{ return STMT_END }
+;			{ return STMT_END; }
 
-/* NUMBERS */
+	/* NUMBERS */
 
-(\d+\.\d*|\d*\.\d+|\d+)([eE][+\-]?\d+)? 	{
+([0-9]+\.[0-9]*|[0-9]*\.[0-9]+|[0-9]+)([eE][+\-]?[0-9]+)? 	{
 		yylval.number = atof(yytext);
 		return NUMBER;
 }
-
-
 
 %%
