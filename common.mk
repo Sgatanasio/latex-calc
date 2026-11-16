@@ -12,9 +12,14 @@ APP        := latex-calc
 
 CXX        ?= g++
 CXXFLAGS   ?= -std=c++17 -Wall -Wextra -pedantic
-CPPFLAGS   += -I$(SRC_DIR)
+
+GINAC_CFLAGS := $(shell pkg-config --cflags ginac 2>/dev/null)
+GINAC_LIBS   := $(shell pkg-config --libs ginac 2>/dev/null)
+
+CPPFLAGS   += -I$(SRC_DIR) $(GINAC_CFLAGS)
 LDFLAGS    ?=
 LDLIBS     ?=
+LDLIBS     += $(GINAC_LIBS)
 
 BISON      ?= bison
 FLEX       ?= flex
