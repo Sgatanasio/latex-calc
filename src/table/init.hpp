@@ -11,21 +11,12 @@ struct SymbolEntry {
 	int token;
 };
 
-// Operadores aritméticos
-static SymbolEntry operators[] = {
-	{"+", PLUS},
-	{"-", MINUS},
-	{"*", TIMES},
-	{"/", DIV},
-	{"^", POWER},
-	{"%", PERCENT},
-	{"!", FACTORIAL},
-	{"\\mod", MOD},
-};
 
 // Funciones matemáticas
 static SymbolEntry functions[] = {
 	// Notación LaTeX (comandos con backslash)
+	{"\\mod", MOD},
+
 	{"\\sqrt", SQRT},
 	{"\\cbrt", CBRT},
 	{"\\exp", EXP},

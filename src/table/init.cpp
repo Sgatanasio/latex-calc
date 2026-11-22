@@ -2,12 +2,6 @@
 #include "table.hpp"
 
 
-void initOperators(SymbolTable &t){
-	for(int i = 0; i < static_cast<int>(sizeof(operators)/sizeof(SymbolEntry)); i++){
-		t.addSymbol(new Symbol(operators[i].name,operators[i].token));
-	}
-}
-
 void initSymbols(SymbolTable &t){
 	for(int i = 0; i < static_cast<int>(sizeof(symbols)/sizeof(SymbolEntry)); i++){
 		t.addSymbol(new Symbol(symbols[i].name,symbols[i].token));
@@ -27,7 +21,6 @@ void initConstants(SymbolTable &t){
 }
 
 void init(SymbolTable &t){
-	initOperators(t);
 	initSymbols(t);
 	initFunctions(t);
 	initConstants(t);

@@ -9,7 +9,8 @@
 #include "parser.tab.h"
 #include "table/init.hpp"
 
-int lineNum = 1;
+extern int lineNum = 1;
+extern SymbolTable t; 
 
 %}
 
@@ -17,14 +18,12 @@ int lineNum = 1;
 
 %%
 
-	/* One line comments */
+	/* One line comments (only when % starts a line) */
 
-%.*$	{ ; }
+^[ \t]*%.*$	{ ; }
 
-[ \t] { ; }
+[ \t]		{ ; }
 \n		{ lineNum++; }
-
-;			{ return STMT_END; }
 
 	/* NUMBERS */
 
@@ -33,4 +32,60 @@ int lineNum = 1;
 		return NUMBER;
 }
 
+[a-zA-Z]+ {
+	std::string id(yytext);
+	yylval.string = strdup(yytext);
+
+	if(!t.lookupSymbol(id)){
+		Variable * n = new Variable(id,UNDEFINED,0.0);
+		t.addSymbol(n);
+		return VARIABLE;
+	}else{
+		Symbol * s = table.getSymbol(id);
+		return s->getToken();
+	}
+}
+
+
+
+	/* ARITHMETIC OPERATORS */
+
+"+"			{ return PLUS; }
+"-"			{ return MINUS; }
+"*"			{ return TIMES; }
+"/"			{ return DIV; }
+"^"			{ return POWER; }
+"**"		{ return POWER; }
+"%"			{ return PERCENT; }
+"!"			{ return FACTORIAL; }
+
+	/* GROUPING, SEPARATION AND ASSIGNMENT SYMBOLS */
+
+"("			{ return LPAREN; }
+")"			{ return RPAREN; }
+"["			{ return LBRACKET; }
+"]"			{ return RBRACKET; }
+"{"			{ return LBRACE; }
+"}"			{ return RBRACE; }
+"|"			{ return BAR; }
+","			{ return COMMA; }
+";"			{ return STMT_END; }
+"="			{ return EQUAL; }
+
+<<EOF>> { return 0; }
+
+. {
+		BEGIN(ERROR);
+		yymore();
+	}
+
+
+<ERROR>[^0-9+\-*/()\^% \t\n\;a-zA-Z=<>!&] {
+		yymore();
+	}
+<ERROR>(.|\n) {
+		yyless(yyleng-1);
+		//DISPLAY LEXICAL ERROR
+		BEGIN(INITIAL);
+	}
 %%
