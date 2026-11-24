@@ -1,0 +1,79 @@
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1130:9: error: use of deleted function ‘YYSTYPE::YYSTYPE()’
+ 1130 | YYSTYPE yylval;
+      |         ^~~~~~
+In file included from /home/esyi/Projects/latex-calc/build/parser/parser.tab.c:103:
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.h:114:7: note: ‘YYSTYPE::YYSTYPE()’ is implicitly deleted because the default definition would be ill-formed:
+  114 | union YYSTYPE
+      |       ^~~~~~~
+/home/esyi/Projects/latex-calc/src/parser/parser.y:16:21: error: union member ‘YYSTYPE::string’ with non-trivial ‘std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’
+   16 |         std::string string;
+      |                     ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1130:9: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+ 1130 | YYSTYPE yylval;
+      |         ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c: In function ‘int yyparse()’:
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1160:30: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+ 1160 |     YYSTYPE yyvsa[YYINITDEPTH];
+      |                              ^
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.h:114:7: note: ‘YYSTYPE::~YYSTYPE()’ is implicitly deleted because the default definition would be ill-formed:
+  114 | union YYSTYPE
+      |       ^~~~~~~
+/home/esyi/Projects/latex-calc/src/parser/parser.y: At global scope:
+/home/esyi/Projects/latex-calc/src/parser/parser.y:16:21: error: union member ‘YYSTYPE::string’ with non-trivial ‘std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::~basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’
+   16 |         std::string string;
+      |                     ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c: In function ‘int yyparse()’:
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1160:30: error: use of deleted function ‘YYSTYPE::YYSTYPE()’
+ 1160 |     YYSTYPE yyvsa[YYINITDEPTH];
+      |                              ^
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1160:30: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1160:30: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1171:11: error: use of deleted function ‘YYSTYPE::YYSTYPE()’
+ 1171 |   YYSTYPE yyval;
+      |           ^~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1171:11: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1171:11: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:474:24: warning: ‘void* __builtin_memcpy(void*, const void*, long unsigned int)’ writing to an object of type ‘YYSTYPE’ {aka ‘union YYSTYPE’} with no trivial copy-assignment [-Wclass-memaccess]
+  474 |       __builtin_memcpy (Dst, Src, YY_CAST (YYSIZE_T, (Count)) * sizeof (*(Src)))
+      |       ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:459:9: note: in expansion of macro ‘YYCOPY’
+  459 |         YYCOPY (&yyptr->Stack_alloc, Stack, yysize);                    \
+      |         ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1254:9: note: in expansion of macro ‘YYSTACK_RELOCATE’
+ 1254 |         YYSTACK_RELOCATE (yyvs_alloc, yyvs);
+      |         ^~~~~~~~~~~~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.h:114:7: note: ‘YYSTYPE’ {aka ‘union YYSTYPE’} declared here
+  114 | union YYSTYPE
+      |       ^~~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1347:14: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1347 |   *++yyvsp = yylval;
+      |              ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.h:114:7: note: ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’ is implicitly deleted because the default definition would be ill-formed:
+  114 | union YYSTYPE
+      |       ^~~~~~~
+/home/esyi/Projects/latex-calc/src/parser/parser.y: At global scope:
+/home/esyi/Projects/latex-calc/src/parser/parser.y:16:21: error: union member ‘YYSTYPE::string’ with non-trivial ‘std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]’
+   16 |         std::string string;
+      |                     ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c: In function ‘int yyparse()’:
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1347:14: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+ 1347 |   *++yyvsp = yylval;
+      |              ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1380:24: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1380 |   yyval = yyvsp[1-yylen];
+      |                        ^
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1380:24: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1407:14: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1407 |   *++yyvsp = yyval;
+      |              ^~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1407:14: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1544:14: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1544 |   *++yyvsp = yylval;
+      |              ^~~~~~
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1544:14: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c: In function ‘void __static_initialization_and_destruction_0()’:
+/home/esyi/Projects/latex-calc/build/parser/parser.tab.c:1130:9: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+ 1130 | YYSTYPE yylval;
+      |         ^~~~~~
+make[1]: *** [Makefile:41: /home/esyi/Projects/latex-calc/build/parser/parser.tab.o] Error 1
+make: *** [Makefile:17: main] Error 2

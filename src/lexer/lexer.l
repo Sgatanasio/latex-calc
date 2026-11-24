@@ -1,4 +1,4 @@
-%option noyywrap nounput noinput
+%option noyywrap nounput noinput always-interactive
 
 %{
 
@@ -8,9 +8,11 @@
 
 #include "parser.tab.h"
 #include "table/init.hpp"
+#include "table/table.hpp"
+#include "table/variable.hpp"
 
-extern int lineNum = 1;
-extern SymbolTable t; 
+int lineNum = 1;
+extern SymbolTable table;
 
 %}
 
@@ -23,7 +25,7 @@ extern SymbolTable t;
 ^[ \t]*%.*$	{ ; }
 
 [ \t]		{ ; }
-\n		{ lineNum++; }
+\r?\n		{ lineNum++; return STMT_END; }
 
 	/* NUMBERS */
 
@@ -36,9 +38,9 @@ extern SymbolTable t;
 	std::string id(yytext);
 	yylval.string = strdup(yytext);
 
-	if(!t.lookupSymbol(id)){
-		Variable * n = new Variable(id,UNDEFINED,0.0);
-		t.addSymbol(n);
+	if(!table.lookupSymbol(id)){
+		Variable * n = new Variable(id,VARIABLE);
+		table.addSymbol(n);
 		return VARIABLE;
 	}else{
 		Symbol * s = table.getSymbol(id);

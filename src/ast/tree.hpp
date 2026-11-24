@@ -9,6 +9,14 @@
 #include <utility>
 #include <vector>
 
+// Returns the same GiNaC symbol for the same name, so equal variables can
+// be combined by GiNaC's simplifier.
+GiNaC::ex internedSymbol(const std::string & name);
+
+// Prints an evaluated expression using implicit multiplication: 3*x is shown
+// as "3x" and x*y as "xy".
+void printExpression(std::ostream & out, const GiNaC::ex & expression);
+
 class ExpNode {
 	public:
 		virtual ~ExpNode() = default;
@@ -171,6 +179,58 @@ class UnaryPlusNode: public UnaryOpNode {
 			: UnaryOpNode(std::move(arg), "+") {}
 
 		GiNaC::ex evaluate() const override;
+};
+
+// ---------------------------------------------------------------------------
+// Literal values (constants)
+// ---------------------------------------------------------------------------
+
+// Leaf used for constants and other literal values.
+class LiteralNode: public ExpNode {
+	private:
+		std::string _label;
+		GiNaC::ex _value;
+	public:
+		LiteralNode(std::string label, const GiNaC::ex & value)
+			: _label(std::move(label)), _value(value) {}
+
+		void printLabel(std::ostream & out) const override;
+		std::vector<const ExpNode *> children() const override;
+		GiNaC::ex evaluate() const override;
+};
+
+// ---------------------------------------------------------------------------
+// Function calls
+// ---------------------------------------------------------------------------
+
+// Function application with one or two arguments.
+class CallNode: public ExpNode {
+	private:
+		std::string _name;
+		std::vector<std::unique_ptr<ExpNode> > _args;
+	public:
+		CallNode(std::string name, std::vector<std::unique_ptr<ExpNode> > args)
+			: _name(std::move(name)), _args(std::move(args)) {}
+
+		CallNode(std::string name, std::unique_ptr<ExpNode> arg)
+			: _name(std::move(name)) {
+			this->_args.push_back(std::move(arg));
+		}
+
+		CallNode(std::string name, std::unique_ptr<ExpNode> left,
+		         std::unique_ptr<ExpNode> right)
+			: _name(std::move(name)) {
+			this->_args.push_back(std::move(left));
+			this->_args.push_back(std::move(right));
+		}
+
+		void printLabel(std::ostream & out) const override;
+		std::vector<const ExpNode *> children() const override;
+		GiNaC::ex evaluate() const override;
+};
+
+// Placeholder for a future program-level AST container.
+class AST {
 };
 
 #endif

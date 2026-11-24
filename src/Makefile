@@ -17,7 +17,8 @@ DEPS        := $(MAIN_DEP) $(PARSER_OBJ:.o=.d) $(LEXER_OBJ:.o=.d)
 
 all: $(TARGET)
 
-$(TARGET): $(MAIN_OBJ) $(TABLE_LIB) $(AST_LIB) $(PARSER_OBJ) $(LEXER_OBJ)
+# Objects come before the static libraries that satisfy their references.
+$(TARGET): $(MAIN_OBJ) $(PARSER_OBJ) $(LEXER_OBJ) $(TABLE_LIB) $(AST_LIB)
 	@mkdir -p $(BIN_DIR)
 	@printf "  LD      %s\n" "$@"
 	@$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)

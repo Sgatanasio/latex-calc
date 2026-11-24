@@ -34,8 +34,9 @@ class SymbolTable	{
 		inline int size() const	{
 			return this->_data.size();
 		}
+		
 
-
+		
 };
 
 #endif
